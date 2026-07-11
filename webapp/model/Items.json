@@ -1,0 +1,243 @@
+{
+    "fieldToFix": "Test",
+    "action_get_getCegHeaderId_1": {
+        "result": {
+            "d": {
+                "ID": "3000022423",
+                "Hist": "TEST",
+                "Finac": "TEST",
+                "Scope": "TEST",
+                "items": {},
+                "vetBy": {},
+                "B_Rate": "TEST",
+                "EXP_PF": "0.00",
+                "Exp_FC": "0.00",
+                "BAR_Att": false,
+                "Exp_Dis": "0.00",
+                "Exp_TPI": "0.00",
+                "Tot_Amt": "1334615.84",
+                "changes": {},
+                "Est_Time": "TEST",
+                "GST_Vale": "219654.00",
+                "Guidline": "TEST",
+                "Type_Ten": "ITEM RATE TENDER",
+                "VettedBy": true,
+                "createdAt": "/Date(1742118326177+0000)/",
+                "createdBy": "shivaraj@mrpl.co.in",
+                "Amt_Budget": "15000.00",
+                "Backup_Qty": "TEST",
+                "Backup_Uom": "TEST",
+                "CostCenter": "",
+                "EXP_FC_GST": "0.00",
+                "Exp_Insu_C": "0.0100000000",
+                "Exp_Landed": "1334615.84",
+                "PurchaseNo": {},
+                "modifiedAt": "/Date(1742118764471+0000)/",
+                "modifiedBy": "shivaraj@mrpl.co.in",
+                "Backup_Rate": "TEST",
+                "Budget_Prov": "TEST",
+                "Description": "TEST1",
+                "Est_Time_By": "TEST",
+                "Exp_GST_Set": "48.00",
+                "Exp_tot_Amt": "1220300.00",
+                "GST_Percent": "18.00",
+                "VettedByval": "1000000.00",
+                "Exp_Tot_A_GST": "1439954.00",
+                "Exp_Tot_B_GST": "1220300.00",
+                "EXP_Landed_Des": "Rupees Thirteen Lakh Thirty-Four Thousand Six Hundred Fifteen and Eighty-Four Paise",
+                "Purcahse_Catag": "3",
+                "Purchase_Group": "10H",
+                "VettedBySubmit": true,
+                "Exp_tot_Amt_Dis": "1220300.00",
+                "PurchaseNo_PurchaseNo": "3000022423"
+            }
+        }
+    },
+    "startEvent": {
+        "ip_level": 0,
+        "purchaserequisition": "3000022423",
+        "link": "https://qas-mrpl-1hppzhg0.launchpad.cfapps.in30.hana.ondemand.com/site/mrpl-etender-qas-india#mrpl-PurchaseApproval?purchaseNo=3000022423&sap-app-origin-hint=saas_approuter",
+        "processcode": "O",
+        "fromname": "Purchase Approval",
+        "approvalsought": "ok"
+    },
+    "custom": {
+        "email_id": "shivaraj@mrpl.co.in",
+        "mailinboxurl": "https://qas-mrpl-1hppzhg0.launchpad.cfapps.in30.hana.ondemand.com/site/mrpl-etender-qas-india##WorkflowTask-DisplayMyInbox",
+        "mailintro_review": "The following office note is in your digital procurement inbox for review and appropriate action.",
+        "emp_code": "00012724",
+        "level": 1,
+        "mail_salutation": "Dear Sir/Madam,",
+        "emp_name": "SHIVARAJ M",
+        "cond": "ID eq '3000022423' and ProcessCode eq 'O'",
+        "mail_footernote": "Note - This is a system generated email, please do not reply.",
+        "mailintro_appr": "The following office note is approved and forwarded to next approver.",
+        "amount_inr": "₹ 12,20,300.00",
+        "mailintro_reject": "The following office note has been rejected for review and appropriate action.",
+        "wf_instanceid": "fa268290-2cd5-11f1-9c96-eeee0a913036",
+        "maillink_intro": "You may view the same by clicking on the below link.",
+        "com_fil": "ID eq '3000022423'",
+        "next_level": 5,
+        "auth_l": "PROPOSER 1",
+        "mailintro_comapp": "The following office note is approved completely.",
+        "mailintro_return": "The following PR has been returned for review and appropriate action.",
+        "techbideval_completed": "The Technical Bid evaluation has been completed for following PR for your review and appropriate action.",
+        "lev": 1.0,
+        "flow_link": "https://qas-mrpl-1hppzhg0.launchpad.cfapps.in30.hana.ondemand.com/site/mrpl-etender-qas-india#mrpl-releasedprs?sap-ui-app-id-hint=saas_approuter_mrpl.mm.releasedprs.purchasereq&/OverViewDetailsPage/3000022423"
+    },
+    "action_get_getConstTabIdIdStatusStatus_1": {
+        "result": {
+            "d": {
+                "ID": "S_URL",
+                "status": "X",
+                "app_url": "https://qas-mrpl-1hppzhg0.launchpad.cfapps.in30.hana.ondemand.com/site/mrpl-etender-qas-india#",
+                "workflow_url": "in30.qas-mrpl-1hppzhg0"
+            }
+        }
+    },
+    "action_get_comment_api_1": {
+        "result": {
+            "d": {
+                "results": [
+                    {
+                        "str": "Purchase Approval:SHIVARAJ M:11/29/2025, 10:06:53 AM-(Approved)(APPROVER 1)\nok\n----------------------------------\n",
+                        "item": [
+                            {
+                                "ID": "3000022423",
+                                "no": 1,
+                                "stamp": "2025-11-29T04:36:53.130Z",
+                                "Status": "Approved",
+                                "Emp_Code": "00012724",
+                                "Emp_name": "SHIVARAJ M",
+                                "comments": "ok",
+                                "pro_Code": "Purchase Approval",
+                                "Emp_email": "shivaraj@mrpl.co.in",
+                                "Emp_Auth_l": "APPROVER 1"
+                            }
+                        ],
+                        "__metadata": {
+                            "uri": "https://mangalore-refinery---petrochemicals-ltd-qas-mrpl-1hppzh69800a72.cfapps.in30.hana.ondemand.com/odata/v2/etender-mstr/comment_api(ID=undefined,no=undefined)",
+                            "type": "etender_mstr.comment_api"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "action_get_PO_APP_list_1": {
+        "result": {
+            "d": {
+                "results": [
+                    {
+                        "Status": "Not Started",
+                        "Emp_Code": "00012724",
+                        "Next_level": 2,
+                        "Emp_name": "SHIVARAJ M",
+                        "Emp_Auth_l": "PROPOSER 1",
+                        "Level": 1,
+                        "Emp_Desg": "SENIOR ASSISTANT - STORES",
+                        "Emp_email": "shivaraj@mrpl.co.in"
+                    },
+                    {
+                        "Status": "Not Started",
+                        "Emp_Code": "00012835",
+                        "Next_level": 12,
+                        "Emp_name": "ARVIND CHOUDHARY",
+                        "Emp_Auth_l": "APPROVER 1",
+                        "Level": 11,
+                        "Emp_Desg": "ENGINEER INCHARGE FOR PR TO PO IMPLEMENATION AND FOR SAP RELATED ACTIVITIES",
+                        "Emp_email": "arvind.choudhary@mrpl.co.in"
+                    },
+                    {
+                        "Status": "Not Started",
+                        "Emp_Code": "00013270",
+                        "Next_level": 13,
+                        "Emp_name": "NARENDRA NATH",
+                        "Emp_Auth_l": "APPROVER 2",
+                        "Level": 12,
+                        "Emp_Desg": "MANAGER",
+                        "Emp_email": "narendra_nath@mrpl.co.in"
+                    },
+                    {
+                        "Status": "Not Started",
+                        "Emp_Code": "00012745",
+                        "Next_level": 14,
+                        "Emp_name": "NAGARAJ",
+                        "Emp_Auth_l": "APPROVER 3",
+                        "Level": 13,
+                        "Emp_Desg": "SENIOR ASSISTANT - PURCHASE",
+                        "Emp_email": "nagaraj@mrpl.co.in"
+                    },
+                    {
+                        "Status": "Not Started",
+                        "Emp_Code": "00011472",
+                        "Next_level": 15,
+                        "Emp_name": "EKALAVYA J. RAI",
+                        "Emp_Auth_l": "APPROVER 4",
+                        "Level": 14,
+                        "Emp_Desg": "CHIEF MANAGER - ISD",
+                        "Emp_email": "ekalavya@mrpl.co.in"
+                    }
+                ]
+            }
+        }
+    },
+    "action_get_PO_APP_list_2": {
+        "result": {
+            "d": {
+                "results": [
+                    {
+                        "Level": 1,
+                        "Status": "Not Started",
+                        "Emp_Code": "00012724",
+                        "Emp_Desg": "SENIOR ASSISTANT - STORES",
+                        "Emp_name": "SHIVARAJ M",
+                        "Emp_email": "shivaraj@mrpl.co.in",
+                        "Emp_Auth_l": "PROPOSER 1",
+                        "Next_level": 2
+                    },
+                    {
+                        "Level": 11,
+                        "Status": "Not Started",
+                        "Emp_Code": "00012835",
+                        "Emp_Desg": "ENGINEER INCHARGE FOR PR TO PO IMPLEMENATION AND FOR SAP RELATED ACTIVITIES",
+                        "Emp_name": "ARVIND CHOUDHARY",
+                        "Emp_email": "arvind.choudhary@mrpl.co.in",
+                        "Emp_Auth_l": "APPROVER 1",
+                        "Next_level": 12
+                    },
+                    {
+                        "Level": 12,
+                        "Status": "Not Started",
+                        "Emp_Code": "00013270",
+                        "Emp_Desg": "MANAGER",
+                        "Emp_name": "NARENDRA NATH",
+                        "Emp_email": "narendra_nath@mrpl.co.in",
+                        "Emp_Auth_l": "APPROVER 2",
+                        "Next_level": 13
+                    },
+                    {
+                        "Level": 13,
+                        "Status": "Not Started",
+                        "Emp_Code": "00012745",
+                        "Emp_Desg": "SENIOR ASSISTANT - PURCHASE",
+                        "Emp_name": "NAGARAJ",
+                        "Emp_email": "nagaraj@mrpl.co.in",
+                        "Emp_Auth_l": "APPROVER 3",
+                        "Next_level": 14
+                    },
+                    {
+                        "Level": 14,
+                        "Status": "Not Started",
+                        "Emp_Code": "00011472",
+                        "Emp_Desg": "CHIEF MANAGER - ISD",
+                        "Emp_name": "EKALAVYA J. RAI",
+                        "Emp_email": "ekalavya@mrpl.co.in",
+                        "Emp_Auth_l": "APPROVER 4",
+                        "Next_level": 15
+                    }
+                ]
+            }
+        }
+    }
+}

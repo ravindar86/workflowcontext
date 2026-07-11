@@ -3,7 +3,13 @@
   "sap.app": {
     "id": "workflowcontext",
     "type": "application",
-    "i18n": "i18n/i18n.properties",
+    "i18n": {
+      "bundleName": "my.app.i18n.i18n",
+      "supportedLocales": [
+        ""
+      ],
+      "fallbackLocale": ""
+    },
     "applicationVersion": {
       "version": "0.0.1"
     },
@@ -33,12 +39,14 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.150.0",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.ui.layout": {}
       }
     },
     "contentDensities": {
@@ -51,6 +59,18 @@
         "settings": {
           "bundleName": "workflowcontext.i18n.i18n"
         }
+      },
+      "instances": {
+          "type": "sap.ui.model.json.JSONModel",
+          "uri": "model/Instances.json"
+      },
+      "header": {
+          "type": "sap.ui.model.json.JSONModel",
+          "uri": "model/Header.json"
+      },
+      "items": {
+          "type": "sap.ui.model.json.JSONModel",
+          "uri": "model/Items.json"
       }
     },
     "resources": {

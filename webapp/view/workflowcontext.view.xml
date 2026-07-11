@@ -1,6 +1,108 @@
 <mvc:View controllerName="workflowcontext.controller.workflowcontext"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-    </Page>
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form">
+   <f:FlexibleColumnLayout
+    id="fcl"
+    layout="ThreeColumnsMidExpanded">
+    <!-- Begin Column -->
+
+    <f:beginColumnPages>
+        <Page title="Workflow Instances">
+            <List
+                id="instanceList"
+                items="{instances>/}"
+                mode="SingleSelectMaster"
+                selectionChange=".onInstanceSelect">
+
+                <ObjectListItem
+                    title="{instances>businessKey}"
+                    number="{instances>status}"
+                    intro="{instances>startedBy}"
+                    type="Active"/>
+            </List>
+        </Page>
+    </f:beginColumnPages>
+
+    <!-- Middle Column -->
+
+    <f:midColumnPages>
+        <Page title="Workflow Header">
+            <form:Form editable="false">
+                <form:layout>
+                    <form:ResponsiveGridLayout
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"/>
+                </form:layout>
+
+                <form:formContainers>
+                    <form:FormContainer>
+
+                        <form:formElements>
+
+                            <form:FormElement label="Business Key">
+                                <form:fields>
+                                    <Text text="{selectedHeader>/businessKey}"/>
+                                </form:fields>
+                            </form:FormElement>
+
+                            <form:FormElement label="Status">
+                                <form:fields>
+                                    <ObjectStatus text="{selectedHeader>/status}"/>
+                                </form:fields>
+                            </form:FormElement>
+
+                            <form:FormElement label="Started By">
+                                <form:fields>
+                                    <Text text="{selectedHeader>/startedBy}"/>
+                                </form:fields>
+                            </form:FormElement>
+
+                            <form:FormElement label="Started At">
+                                <form:fields>
+                                    <Text text="{path: 'selectedHeader>/startedAt', formatter: '.formatter.formatDateTime'}"/>
+                                </form:fields>
+                            </form:FormElement>
+
+                            <form:FormElement label="Definition">
+                                <form:fields>
+                                    <Text text="{selectedHeader>/definitionId}"/>
+                                </form:fields>
+                            </form:FormElement>
+
+                            <form:FormElement label="Project">
+                                <form:fields>
+                                    <Text text="{selectedHeader>/projectId}"/>
+                                </form:fields>
+                            </form:FormElement>
+
+                            <form:FormElement label="Project Version">
+                                <form:fields>
+                                    <Text text="{selectedHeader>/projectVersion}"/>
+                                </form:fields>
+                            </form:FormElement>
+
+                        </form:formElements>
+
+                    </form:FormContainer>
+
+                </form:formContainers>
+
+            </form:Form>
+        </Page>
+    </f:midColumnPages>
+
+    <!-- End Column -->
+    <f:endColumnPages>
+        <Page title="Workflow Context">
+
+        </Page>
+    </f:endColumnPages>
+
+</f:FlexibleColumnLayout>
 </mvc:View>
