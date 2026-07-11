@@ -9,16 +9,24 @@ sap.ui.define([
     return Controller.extend("workflowcontext.controller.workflowcontext", {
         formatter: formatter,
         onInit() {
-            //  var oHeaderFields = new JSONModel({
-            //     fields: []
-            // });
-
-            // this.getView().setModel(oHeaderFields, "headerFields");
-
              this.getView().setModel(
                 new sap.ui.model.json.JSONModel({}),
                 "selectedHeader"
             );
+
+            this.getView().setModel(
+                new JSONModel({
+                    type: "",
+                    data: {}
+                }),
+                "contextView"
+            );
+
+            var oApprovalTable = new JSONModel({
+                results: []
+            });
+
+            this.getView().setModel(oApprovalTable, "approvalTable");
         },
         onInstanceSelect : function (oEvent) {
             var oInstance = oEvent.getParameter("listItem")
@@ -29,39 +37,60 @@ sap.ui.define([
                 .getModel("header")
                 .getData();
 
-            // Match Instance ID with Header Root Instance ID
+            MessageToast.show("Selected : " + oInstance.businessKey);
+
+            // Load Header
+            this._loadHeader(oInstance);
+        },
+        _loadHeader: function (oInstance) {
+
+            var oHeader = this.getView()
+                .getModel("header")
+                .getData();
+
             if (oInstance.businessKey === oHeader.businessKey) {
-
-                //this._buildHeaderFields(oHeader);
-                this.getView()
-                    .getModel("selectedHeader")
-                    .setData(oHeader);
-
+                this._buildHeaderFields(oHeader);
+                this._loadApprovalTable();
             } else {
-
-                // Clear Header Section
-                // this.getView()
-                //     .getModel("headerFields")
-                //     .setProperty("/fields", []);
-
                 this.getView()
                     .getModel("selectedHeader")
                     .setData({});
-            }       
+
+                this.getView()
+                .getModel("approvalTable")
+                .setProperty("/results", []);
+                this.byId("approvalTable").setVisibleRowCount(0);
+            }
         },
         _buildHeaderFields: function (oHeader) {
+           
+            this.getView()
+                     .getModel("selectedHeader")
+                     .setData(oHeader);
+        },
+        _loadApprovalTable: function () {
 
-            var aFields = [];
-            Object.keys(oHeader).forEach(function (sKey) {
-                aFields.push({
-                    key: sKey,
-                    value: oHeader[sKey]
-                });
-            });
+            var oItems = this.getView()
+                .getModel("items")
+                .getData();
+
+            var aResults = [];
+
+            if (
+                oItems.action_get_PO_APP_list_1 &&
+                oItems.action_get_PO_APP_list_1.result &&
+                oItems.action_get_PO_APP_list_1.result.d &&
+                oItems.action_get_PO_APP_list_1.result.d.results
+            ) {
+                aResults = oItems.action_get_PO_APP_list_1.result.d.results;
+            }
 
             this.getView()
-                .getModel("headerFields")
-                .setProperty("/fields", aFields);
+                .getModel("approvalTable")
+                .setProperty("/results", aResults);
+
+            this.byId("approvalTable").setVisibleRowCount(aResults.length);
+
         }
     });
 });

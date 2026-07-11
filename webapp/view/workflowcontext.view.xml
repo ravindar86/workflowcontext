@@ -2,7 +2,8 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    xmlns:form="sap.ui.layout.form">
+    xmlns:form="sap.ui.layout.form"
+    xmlns:table="sap.ui.table">
    <f:FlexibleColumnLayout
     id="fcl"
     layout="ThreeColumnsMidExpanded">
@@ -100,7 +101,73 @@
     <!-- End Column -->
     <f:endColumnPages>
         <Page title="Workflow Context">
+            <table:Table
+            id="approvalTable"
+            rows="{approvalTable>/results}"
+            selectionMode="None"
+            width="100%">
 
+            <table:columns>
+
+                <table:Column width="8rem">
+                    <Label text="Status"/>
+                    <table:template>
+                        <Text text="{approvalTable>Status}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+
+                <table:Column width="8rem">
+                    <Label text="Employee Code"/>
+                    <table:template>
+                        <Text text="{approvalTable>Emp_Code}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+
+                <table:Column width="5rem">
+                    <Label text="Next Level"/>
+                    <table:template>
+                        <Text text="{approvalTable>Next_level}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+
+                <table:Column width="12rem">
+                    <Label text="Employee Name"/>
+                    <table:template>
+                        <Text text="{approvalTable>Emp_name}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+
+                <table:Column width="8rem">
+                    <Label text="Employee Auth"/>
+                    <table:template>
+                        <Text text="{approvalTable>Emp_Auth_l}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+
+                <table:Column width="5rem">
+                    <Label text="Level"/>
+                    <table:template>
+                        <Text text="{approvalTable>Level}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+
+                <table:Column width="18rem">
+                    <Label text="Designation"/>
+                    <table:template>
+                        <Text text="{approvalTable>Emp_Desg}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+
+                <table:Column width="18rem">
+                    <Label text="Employee Email"/>
+                    <table:template>
+                        <Text text="{approvalTable>Emp_email}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+
+            </table:columns>
+
+        </table:Table>
         </Page>
     </f:endColumnPages>
 
