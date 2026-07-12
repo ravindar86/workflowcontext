@@ -38,6 +38,17 @@ sap.ui.define([
 
             this.byId("approvalTable1").setVisibleRowCount(0);
             this.byId("approvalTable2").setVisibleRowCount(0);
+
+            this.getView().setModel(
+                new JSONModel({}), 
+                "custom");
+
+            this.getView().setModel(
+                    new JSONModel({
+                        items: []
+                    }), "commentTable");
+
+            this.byId("commentTable").setVisibleRowCount(0);
         },
         onInstanceSelect : function (oEvent) {
             var oInstance = oEvent.getParameter("listItem")
@@ -61,6 +72,8 @@ sap.ui.define([
 
             if (oInstance.businessKey === oHeader.businessKey) {
                 this._buildHeaderFields(oHeader);
+                this._loadCustom();
+                this._loadComments();
                 this._loadApprovalTable();
             } else {
                 this.getView()
@@ -77,6 +90,17 @@ sap.ui.define([
 
                 this.byId("approvalTable1").setVisibleRowCount(0);
                 this.byId("approvalTable2").setVisibleRowCount(0);
+
+                 this.getView().setModel(
+                new JSONModel({}), 
+                "custom");
+
+                this.getView().setModel(
+                    new JSONModel({
+                        items: []
+                    }), "commentTable");
+
+                this.byId("commentTable").setVisibleRowCount(0);
             }
         },
         _buildHeaderFields: function (oHeader) {
@@ -131,6 +155,48 @@ sap.ui.define([
                 .setProperty("/results", aResults2);
 
             this.byId("approvalTable2").setVisibleRowCount(aResults2.length);
+        },
+        _loadCustom: function () {
+
+            var oItems = this.getView()
+                .getModel("items")
+                .getData();
+
+            if (oItems.custom) {
+                this.getView()
+                    .getModel("custom")
+                    .setData(oItems.custom);
+            } else {
+                this.getView()
+                    .getModel("custom")
+                    .setData({});
+            }
+        },
+        _loadComments: function () {
+
+            var oItems = this.getView()
+                .getModel("items")
+                .getData();
+
+            var aComments = [];
+
+            if (
+                oItems.action_get_comment_api_1 &&
+                oItems.action_get_comment_api_1.result &&
+                oItems.action_get_comment_api_1.result.d &&
+                oItems.action_get_comment_api_1.result.d.results &&
+                oItems.action_get_comment_api_1.result.d.results.length > 0 &&
+                oItems.action_get_comment_api_1.result.d.results[0].item
+            ) {
+                aComments = oItems.action_get_comment_api_1.result.d.results[0].item;
+            }
+
+            this.getView()
+                .getModel("commentTable")
+                .setProperty("/items", aComments);
+
+            this.byId("commentTable")
+                .setVisibleRowCount(Math.min(aComments.length, 10));
         }
     });
 });

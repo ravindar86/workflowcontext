@@ -101,13 +101,121 @@
     <!-- End Column -->
     <f:endColumnPages>
         <Page title="Workflow Context">
+
+      
+            <form:SimpleForm
+                editable="false"
+                layout="ResponsiveGridLayout"
+                columnsXL="2"
+                columnsL="2"
+                columnsM="1"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3" title="Custom Details">
+
+                <Label text="Employee Code"/>
+                <Text text="{custom>/emp_code}"/>
+
+                <Label text="Employee Name"/>
+                <Text text="{custom>/emp_name}"/>
+
+                <Label text="Email"/>
+                <Text text="{custom>/email_id}"/>
+
+                <Label text="Authorization"/>
+                <Text text="{custom>/auth_l}"/>
+
+                <Label text="Level"/>
+                <Text text="{custom>/level}"/>
+
+                <Label text="Next Level"/>
+                <Text text="{custom>/next_level}"/>
+
+                <Label text="Amount"/>
+                <Text text="{custom>/amount_inr}"/>
+
+                <Label text="Workflow Instance"/>
+                <Text text="{custom>/wf_instanceid}"/>
+
+            </form:SimpleForm>
+
+
+            <table:Table
+                id="commentTable"
+                rows="{commentTable>/items}"
+                selectionMode="None"
+                width="100%"
+                class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+
+                <table:extension>
+                    <OverflowToolbar>
+                        <Title text="Comments" level="H3"/>
+                        <ToolbarSpacer/>
+                        <Button text="Refresh" press=".onRefresh"/>
+                    </OverflowToolbar>
+                </table:extension>
+
+                <table:columns>
+
+                    <table:Column width="8rem">
+                        <Label text="Status"/>
+                        <table:template>
+                            <Text text="{commentTable>Status}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="8rem">
+                        <Label text="Employee Code"/>
+                        <table:template>
+                            <Text text="{commentTable>Emp_Code}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="12rem">
+                        <Label text="Employee Name"/>
+                        <table:template>
+                            <Text text="{commentTable>Emp_name}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="8rem">
+                        <Label text="Authorization"/>
+                        <table:template>
+                            <Text text="{commentTable>Emp_Auth_l}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="12rem">
+                        <Label text="Comment"/>
+                        <table:template>
+                            <Text text="{commentTable>comments}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="10rem">
+                        <Label text="Date"/>
+                        <table:template>
+                            <Text
+                                text="{
+                                    path:'commentTable>stamp',
+                                    formatter:'.formatter.formatDateTime'
+                                }"
+                                wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                </table:columns>
+
+            </table:Table>
+
+
             <table:Table
             id="approvalTable1"
             rows="{approvalTable1>/results}"
             selectionMode="None"
             width="100%"
             class="sapUiSmallMarginTop sapUiSmallMarginBottom">
-
+            
                 <table:extension>
                     <OverflowToolbar>
                         <Title text="PO Approval list 1" level="H3"/>
@@ -185,6 +293,8 @@
             selectionMode="None"
             width="100%"
             class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+
+                
 
                 <table:extension>
                     <OverflowToolbar>
