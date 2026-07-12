@@ -22,11 +22,22 @@ sap.ui.define([
                 "contextView"
             );
 
-            var oApprovalTable = new JSONModel({
-                results: []
-            });
+           this.getView().setModel(
+                new JSONModel({
+                    results: []
+                }),
+                "approvalTable1"
+            );
 
-            this.getView().setModel(oApprovalTable, "approvalTable");
+            this.getView().setModel(
+                new JSONModel({
+                    results: []
+                }),
+                "approvalTable2"
+            );
+
+            this.byId("approvalTable1").setVisibleRowCount(0);
+            this.byId("approvalTable2").setVisibleRowCount(0);
         },
         onInstanceSelect : function (oEvent) {
             var oInstance = oEvent.getParameter("listItem")
@@ -57,9 +68,15 @@ sap.ui.define([
                     .setData({});
 
                 this.getView()
-                .getModel("approvalTable")
+                .getModel("approvalTable1")
                 .setProperty("/results", []);
-                this.byId("approvalTable").setVisibleRowCount(0);
+
+                this.getView()
+                .getModel("approvalTable2")
+                .setProperty("/results", []);
+
+                this.byId("approvalTable1").setVisibleRowCount(0);
+                this.byId("approvalTable2").setVisibleRowCount(0);
             }
         },
         _buildHeaderFields: function (oHeader) {
@@ -74,7 +91,13 @@ sap.ui.define([
                 .getModel("items")
                 .getData();
 
-            var aResults = [];
+            this._loadApprovalTable1(oItems);
+
+            this._loadApprovalTable2(oItems);
+
+        },
+        _loadApprovalTable1: function (oItems) {
+            var aResults1 = [];
 
             if (
                 oItems.action_get_PO_APP_list_1 &&
@@ -82,15 +105,32 @@ sap.ui.define([
                 oItems.action_get_PO_APP_list_1.result.d &&
                 oItems.action_get_PO_APP_list_1.result.d.results
             ) {
-                aResults = oItems.action_get_PO_APP_list_1.result.d.results;
+                aResults1 = oItems.action_get_PO_APP_list_1.result.d.results;
             }
 
             this.getView()
-                .getModel("approvalTable")
-                .setProperty("/results", aResults);
+                .getModel("approvalTable1")
+                .setProperty("/results", aResults1);
 
-            this.byId("approvalTable").setVisibleRowCount(aResults.length);
+            this.byId("approvalTable1").setVisibleRowCount(aResults1.length);
+        },
+        _loadApprovalTable2: function (oItems) {
+            var aResults2 = [];
 
+            if (
+                oItems.action_get_PO_APP_list_2 &&
+                oItems.action_get_PO_APP_list_2.result &&
+                oItems.action_get_PO_APP_list_2.result.d &&
+                oItems.action_get_PO_APP_list_2.result.d.results
+            ) {
+                aResults2 = oItems.action_get_PO_APP_list_2.result.d.results;
+            }
+
+            this.getView()
+                .getModel("approvalTable2")
+                .setProperty("/results", aResults2);
+
+            this.byId("approvalTable2").setVisibleRowCount(aResults2.length);
         }
     });
 });

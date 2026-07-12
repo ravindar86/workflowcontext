@@ -102,72 +102,159 @@
     <f:endColumnPages>
         <Page title="Workflow Context">
             <table:Table
-            id="approvalTable"
-            rows="{approvalTable>/results}"
+            id="approvalTable1"
+            rows="{approvalTable1>/results}"
             selectionMode="None"
-            width="100%">
+            width="100%"
+            class="sapUiSmallMarginTop sapUiSmallMarginBottom">
 
-            <table:columns>
+                <table:extension>
+                    <OverflowToolbar>
+                        <Title text="PO Approval list 1" level="H3"/>
+                        <ToolbarSpacer/>
+                        <Button text="Refresh" press=".onRefresh"/>
+                    </OverflowToolbar>
+                </table:extension>
 
-                <table:Column width="8rem">
-                    <Label text="Status"/>
-                    <table:template>
-                        <Text text="{approvalTable>Status}" wrapping="false"/>
-                    </table:template>
-                </table:Column>
+                <table:columns>
 
-                <table:Column width="8rem">
-                    <Label text="Employee Code"/>
-                    <table:template>
-                        <Text text="{approvalTable>Emp_Code}" wrapping="false"/>
-                    </table:template>
-                </table:Column>
+                    <table:Column width="8rem">
+                        <Label text="Status"/>
+                        <table:template>
+                            <Text text="{approvalTable1>Status}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
 
-                <table:Column width="5rem">
-                    <Label text="Next Level"/>
-                    <table:template>
-                        <Text text="{approvalTable>Next_level}" wrapping="false"/>
-                    </table:template>
-                </table:Column>
+                    <table:Column width="8rem">
+                        <Label text="Employee Code"/>
+                        <table:template>
+                            <Text text="{approvalTable1>Emp_Code}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
 
-                <table:Column width="12rem">
-                    <Label text="Employee Name"/>
-                    <table:template>
-                        <Text text="{approvalTable>Emp_name}" wrapping="false"/>
-                    </table:template>
-                </table:Column>
+                    <table:Column width="5rem">
+                        <Label text="Next Level"/>
+                        <table:template>
+                            <Text text="{approvalTable1>Next_level}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
 
-                <table:Column width="8rem">
-                    <Label text="Employee Auth"/>
-                    <table:template>
-                        <Text text="{approvalTable>Emp_Auth_l}" wrapping="false"/>
-                    </table:template>
-                </table:Column>
+                    <table:Column width="12rem">
+                        <Label text="Employee Name"/>
+                        <table:template>
+                            <Text text="{approvalTable1>Emp_name}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
 
-                <table:Column width="5rem">
-                    <Label text="Level"/>
-                    <table:template>
-                        <Text text="{approvalTable>Level}" wrapping="false"/>
-                    </table:template>
-                </table:Column>
+                    <table:Column width="8rem">
+                        <Label text="Employee Auth"/>
+                        <table:template>
+                            <Text text="{approvalTable1>Emp_Auth_l}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
 
-                <table:Column width="18rem">
-                    <Label text="Designation"/>
-                    <table:template>
-                        <Text text="{approvalTable>Emp_Desg}" wrapping="false"/>
-                    </table:template>
-                </table:Column>
+                    <table:Column width="5rem">
+                        <Label text="Level"/>
+                        <table:template>
+                            <Text text="{approvalTable1>Level}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
 
-                <table:Column width="18rem">
-                    <Label text="Employee Email"/>
-                    <table:template>
-                        <Text text="{approvalTable>Emp_email}" wrapping="false"/>
-                    </table:template>
-                </table:Column>
+                    <table:Column width="18rem">
+                        <Label text="Designation"/>
+                        <table:template>
+                            <Text text="{approvalTable1>Emp_Desg}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
 
-            </table:columns>
+                    <table:Column width="18rem">
+                        <Label text="Employee Email"/>
+                        <table:template>
+                            <Text text="{approvalTable1>Emp_email}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
 
-        </table:Table>
+                </table:columns>
+
+            </table:Table>
+
+
+            <table:Table
+            id="approvalTable2"
+            rows="{approvalTable2>/results}"
+            selectionMode="None"
+            width="100%"
+            class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+
+                <table:extension>
+                    <OverflowToolbar>
+                        <Title text="PO Approval list 2" level="H3"/>
+                        <ToolbarSpacer/>
+                        <Button text="Refresh" press=".onRefresh"/>
+                    </OverflowToolbar>
+                </table:extension>
+
+                <table:columns>
+
+                    <table:Column width="8rem">
+                        <Label text="Status"/>
+                        <table:template>
+                            <Text text="{approvalTable2>Status}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="8rem">
+                        <Label text="Employee Code"/>
+                        <table:template>
+                            <Text text="{approvalTable2>Emp_Code}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="5rem">
+                        <Label text="Next Level"/>
+                        <table:template>
+                            <Text text="{approvalTable2>Next_level}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="12rem">
+                        <Label text="Employee Name"/>
+                        <table:template>
+                            <Text text="{approvalTable2>Emp_name}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="8rem">
+                        <Label text="Employee Auth"/>
+                        <table:template>
+                            <Text text="{approvalTable2>Emp_Auth_l}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="5rem">
+                        <Label text="Level"/>
+                        <table:template>
+                            <Text text="{approvalTable2>Level}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="18rem">
+                        <Label text="Designation"/>
+                        <table:template>
+                            <Text text="{approvalTable2>Emp_Desg}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column width="18rem">
+                        <Label text="Employee Email"/>
+                        <table:template>
+                            <Text text="{approvalTable2>Emp_email}" wrapping="false"/>
+                        </table:template>
+                    </table:Column>
+
+                </table:columns>
+
+            </table:Table>
         </Page>
     </f:endColumnPages>
 
