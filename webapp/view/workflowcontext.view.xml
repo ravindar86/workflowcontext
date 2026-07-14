@@ -102,6 +102,138 @@
     <f:endColumnPages>
         <Page title="Workflow Context">
 
+            <Panel
+                id="purchaseHeaderPanel"
+                expandable="true"
+                expanded="true"
+                class="sapUiNoMargin">
+
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Purchase Header Details"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <content>
+
+                    <form:SimpleForm
+                        id="purchaseHeaderForm"
+                        editable="false"
+                        layout="ResponsiveGridLayout"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="1"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3">
+
+                        <!-- Row 1 -->
+
+                        <Label text="Purchase No"/>
+                        <Text text="{purchaseHeader>/PurchaseNo_PurchaseNo}"/>
+
+                        <Label text="Description"/>
+                        <Text text="{purchaseHeader>/Description}"/>
+
+                        <!-- Row 2 -->
+
+                        <Label text="Purchase Category"/>
+                        <Text text="{purchaseHeader>/Purcahse_Catag}"/>
+
+                        <Label text="Purchase Group"/>
+                        <Text text="{purchaseHeader>/Purchase_Group}"/>
+
+                        <!-- Row 3 -->
+
+                        <Label text="Tender Type"/>
+                        <Text text="{purchaseHeader>/Type_Ten}"/>
+
+                        <Label text="Scope"/>
+                        <Text text="{purchaseHeader>/Scope}"/>
+
+                        <!-- Row 4 -->
+
+                        <Label text="Estimated Time"/>
+                        <Text text="{purchaseHeader>/Est_Time}"/>
+
+                        <Label text="Estimated Time By"/>
+                        <Text text="{purchaseHeader>/Est_Time_By}"/>
+
+                        <!-- Row 5 -->
+
+                        <Label text="Budget Amount"/>
+                        <Text text="{purchaseHeader>/Amt_Budget}"/>
+
+                        <Label text="Expected Amount"/>
+                        <Text text="{purchaseHeader>/Exp_tot_Amt}"/>
+
+                        <!-- Row 6 -->
+
+                        <Label text="Total Amount"/>
+                        <Text text="{purchaseHeader>/Tot_Amt}"/>
+
+                        <Label text="GST %"/>
+                        <Text text="{purchaseHeader>/GST_Percent}"/>
+
+                        <!-- Row 7 -->
+
+                        <Label text="GST Value"/>
+                        <Text text="{purchaseHeader>/GST_Vale}"/>
+
+                        <Label text="Expected GST"/>
+                        <Text text="{purchaseHeader>/Exp_GST_Set}"/>
+
+                        <!-- Row 8 -->
+
+                        <Label text="Landed Cost"/>
+                        <Text text="{purchaseHeader>/Exp_Landed}"/>
+
+                        <Label text="Landed Cost (Words)"/>
+                        <Text text="{purchaseHeader>/EXP_Landed_Des}"/>
+
+                        <!-- Row 9 -->
+
+                        <Label text="Created By"/>
+                        <Text text="{purchaseHeader>/createdBy}"/>
+
+                        <Label text="Created On"/>
+                        <Text
+                            text="{
+                                path:'purchaseHeader>/createdAt',
+                                formatter:'.formatter.formatSAPDate'
+                            }"/>
+                            
+
+                        <!-- Row 10 -->
+
+                        <Label text="Modified By"/>
+                        <Text text="{purchaseHeader>/modifiedBy}"/>
+
+                        <Label text="Modified On"/>
+                        <Text
+                            text="{
+                                path:'purchaseHeader>/modifiedAt',
+                                formatter:'.formatter.formatSAPDate'
+                            }"/>
+
+                    </form:SimpleForm>
+
+                </content>
+
+            </Panel>
+
+            <Panel
+                id="customDetailsPanel"
+                expandable="true"
+                expanded="true"
+                class="sapUiNoMargin">
+
+                 <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Custom Details"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+
       
             <form:SimpleForm
                 editable="false"
@@ -111,7 +243,7 @@
                 columnsM="1"
                 labelSpanXL="3"
                 labelSpanL="3"
-                labelSpanM="3" title="Custom Details">
+                labelSpanM="3">
 
                 <Label text="Employee Code"/>
                 <Text text="{custom>/emp_code}"/>
@@ -138,7 +270,20 @@
                 <Text text="{custom>/wf_instanceid}"/>
 
             </form:SimpleForm>
+        </Panel>
 
+
+        <Panel
+                id="commentTablePanel"
+                expandable="true"
+                expanded="true"
+                class="sapUiNoMargin">
+
+                 <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Comments"/>
+                    </OverflowToolbar>
+                </headerToolbar>
 
             <table:Table
                 id="commentTable"
@@ -146,14 +291,6 @@
                 selectionMode="None"
                 width="100%"
                 class="sapUiSmallMarginTop sapUiSmallMarginBottom">
-
-                <table:extension>
-                    <OverflowToolbar>
-                        <Title text="Comments" level="H3"/>
-                        <ToolbarSpacer/>
-                        <Button text="Refresh" press=".onRefresh"/>
-                    </OverflowToolbar>
-                </table:extension>
 
                 <table:columns>
 
@@ -188,7 +325,10 @@
                     <table:Column width="12rem">
                         <Label text="Comment"/>
                         <table:template>
-                            <Text text="{commentTable>comments}" wrapping="false"/>
+                            <Input
+                                value="{commentTable>comments}"
+                                editable="true"
+                                liveChange=".onCommentChange"/>
                         </table:template>
                     </table:Column>
 
@@ -207,7 +347,20 @@
                 </table:columns>
 
             </table:Table>
+            </Panel>
 
+
+        <Panel
+                id="approvalTablePanel"
+                expandable="true"
+                expanded="true"
+                class="sapUiNoMargin">
+
+                 <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Approval Tables"/>
+                    </OverflowToolbar>
+                </headerToolbar>
 
             <table:Table
             id="approvalTable1"
@@ -365,6 +518,7 @@
                 </table:columns>
 
             </table:Table>
+            </Panel>
         </Page>
     </f:endColumnPages>
 

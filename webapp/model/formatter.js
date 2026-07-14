@@ -18,6 +18,25 @@ sap.ui.define([
                 style: "medium"
             }).format(oDate);
 
+        },
+        formatSAPDate: function (sDate) {
+
+            if (!sDate) {
+                return "";
+            }
+
+            var aMatch = /\/Date\((\d+)/.exec(sDate);
+
+            if (!aMatch) {
+                return "";
+            }
+
+            var oDate = new Date(parseInt(aMatch[1], 10));
+
+            return DateFormat.getDateTimeInstance({
+                pattern: "dd-MMM-yyyy hh:mm:ss a"
+            }).format(oDate);
+
         }
 
     };

@@ -9,6 +9,12 @@ sap.ui.define([
     return Controller.extend("workflowcontext.controller.workflowcontext", {
         formatter: formatter,
         onInit() {
+
+            this.getView().setModel(
+                new JSONModel({}),
+                "purchaseHeader"
+            );
+
              this.getView().setModel(
                 new sap.ui.model.json.JSONModel({}),
                 "selectedHeader"
@@ -71,37 +77,65 @@ sap.ui.define([
                 .getData();
 
             if (oInstance.businessKey === oHeader.businessKey) {
+                
                 this._buildHeaderFields(oHeader);
+                this._loadPurchaseHeader();
                 this._loadCustom();
                 this._loadComments();
                 this._loadApprovalTable();
+                
             } else {
                 this.getView()
                     .getModel("selectedHeader")
                     .setData({});
 
                 this.getView()
-                .getModel("approvalTable1")
-                .setProperty("/results", []);
+                    .getModel("approvalTable1")
+                    .setProperty("/results", []);
 
                 this.getView()
-                .getModel("approvalTable2")
-                .setProperty("/results", []);
+                    .getModel("approvalTable2")
+                    .setProperty("/results", []);
 
                 this.byId("approvalTable1").setVisibleRowCount(0);
                 this.byId("approvalTable2").setVisibleRowCount(0);
 
-                 this.getView().setModel(
-                new JSONModel({}), 
-                "custom");
+                this.getView()
+                    .getModel("custom")
+                    .setData({});
 
-                this.getView().setModel(
-                    new JSONModel({
-                        items: []
-                    }), "commentTable");
+                this.getView()
+                    .getModel("commentTable")
+                    .setData({ items: [] });
 
                 this.byId("commentTable").setVisibleRowCount(0);
+
+                this.getView()
+                    .getModel("purchaseHeader")
+                    .setData({});
             }
+        },
+        _loadPurchaseHeader: function () {
+
+            var oItems = this.getView()
+                .getModel("items")
+                .getData();
+
+            var oPurchaseHeader = {};
+
+            if (
+                oItems.action_get_getCegHeaderId_1 &&
+                oItems.action_get_getCegHeaderId_1.result &&
+                oItems.action_get_getCegHeaderId_1.result.d
+            ) {
+                oPurchaseHeader =
+                    oItems.action_get_getCegHeaderId_1.result.d;
+            }
+
+            this.getView()
+                .getModel("purchaseHeader")
+                .setData(oPurchaseHeader);
+
         },
         _buildHeaderFields: function (oHeader) {
            
@@ -111,51 +145,47 @@ sap.ui.define([
         },
         _loadApprovalTable: function () {
 
+             this._loadTable(
+                "action_get_PO_APP_list_1",
+                "approvalTable1",
+                "approvalTable1"
+            );
+
+            this._loadTable(
+                "action_get_PO_APP_list_2",
+                "approvalTable2",
+                "approvalTable2"
+            );
+
+        },
+        _loadTable: function (sAction,sModel,sTableId) {
+
             var oItems = this.getView()
                 .getModel("items")
                 .getData();
 
-            this._loadApprovalTable1(oItems);
-
-            this._loadApprovalTable2(oItems);
-
-        },
-        _loadApprovalTable1: function (oItems) {
-            var aResults1 = [];
+            var aResults = [];
 
             if (
-                oItems.action_get_PO_APP_list_1 &&
-                oItems.action_get_PO_APP_list_1.result &&
-                oItems.action_get_PO_APP_list_1.result.d &&
-                oItems.action_get_PO_APP_list_1.result.d.results
+                oItems[sAction] &&
+                oItems[sAction].result &&
+                oItems[sAction].result.d &&
+                oItems[sAction].result.d.results
             ) {
-                aResults1 = oItems.action_get_PO_APP_list_1.result.d.results;
+                aResults =
+                    oItems[sAction].result.d.results;
             }
 
             this.getView()
-                .getModel("approvalTable1")
-                .setProperty("/results", aResults1);
+                .getModel(sModel)
+                .setProperty("/results", aResults);
 
-            this.byId("approvalTable1").setVisibleRowCount(aResults1.length);
-        },
-        _loadApprovalTable2: function (oItems) {
-            var aResults2 = [];
+            this.byId(sTableId)
+                .setVisibleRowCount(
+                    Math.min(aResults.length, 10)
+                );
 
-            if (
-                oItems.action_get_PO_APP_list_2 &&
-                oItems.action_get_PO_APP_list_2.result &&
-                oItems.action_get_PO_APP_list_2.result.d &&
-                oItems.action_get_PO_APP_list_2.result.d.results
-            ) {
-                aResults2 = oItems.action_get_PO_APP_list_2.result.d.results;
-            }
-
-            this.getView()
-                .getModel("approvalTable2")
-                .setProperty("/results", aResults2);
-
-            this.byId("approvalTable2").setVisibleRowCount(aResults2.length);
-        },
+        },        
         _loadCustom: function () {
 
             var oItems = this.getView()
@@ -197,6 +227,33 @@ sap.ui.define([
 
             this.byId("commentTable")
                 .setVisibleRowCount(Math.min(aComments.length, 10));
+        },
+        onCommentChange: function (oEvent) {
+
+            var sComment = oEvent.getParameter("value");
+            var oContext = oEvent.getSource().getBindingContext("commentTable");
+            var oRow = oContext.getObject();
+
+            console.log(oRow);
+
+            console.log("New Comment :", sComment);
+        },
+        onSaveComments: function () {
+
+            var aComments = this.getView()
+                .getModel("commentTable")
+                .getProperty("/items");
+
+            console.log(aComments);
+
+            // Later:
+            // oModel.update(...)
+        },
+        isCommentEditable: function (sStatus) {
+            if (!sStatus) {
+                return true;
+            }
+            return sStatus.trim().toUpperCase() !== "APPROVED";
         }
     });
 });
